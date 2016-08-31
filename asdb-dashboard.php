@@ -121,7 +121,8 @@ class ASDB_Dashboard {
 					<td>
 						<?php $url = get_permalink( $post->ID );
 						global $ads_options;
-						$ads_edit = get_bloginfo('wpurl').'/?ADS_ACTION=EDIT&amp;ID='.$post->ID .'&amp;page_id='.$ads_options['ads_edit_page']; //$ads_edit = get_edit_post_link ();
+						//$ads_edit = get_bloginfo('wpurl').'/?ADS_ACTION=EDIT&amp;ID='.$post->ID .'&amp;page_id='.$ads_options['ads_edit_page']; //$ads_edit = get_edit_post_link ();
+						$ads_edit = get_bloginfo('wpurl').'/?ADS_ACTION=EDIT&amp;ID='.$post->ID .'&amp;page_id='.(int)get_post_meta($post->ID, 'ads_form_id', true);
 						?>
 						<a href="<?php echo wp_nonce_url( $ads_edit, 'asdb_edit' ); ?>"><?php _e( 'Edit', 'asdb-dashboard' ); ?></a>
 						<a href="<?php echo wp_nonce_url( "?action=del&pid=" . $post->ID, 'asdb_del' ) ?>" onclick="return confirm('<?php _e( 'Are you sure to delete this post?', 'asdb-dashboard' ); ?>');"><span style="color: red;"><?php _e( 'Delete', 'asdb-dashboard' ); ?></span></a>
